@@ -93,6 +93,7 @@ alias vcfg="vim /home/ganic/classmarkets/ring-workspace/ring-web/app/config/para
 alias grn="go run"
 alias ring="bash ~/dotfiles/.ring.sh"
 alias todo="vim ~/Documents/notes/TODO.txt"
+alias gpl="git pull"
 
 # Alias scripts
 
@@ -122,6 +123,10 @@ tfc () {
 
 phptest () {
   phpcs --standard=~/classmarkets/ring-workspace/ring-core/phpcs-ruleset.xml $1
+}
+
+xd () {
+  xdg-open $1
 }
 
 #direnv
