@@ -20,10 +20,11 @@ let mapleader = "\<Space>"
 call plug#begin('~/.vim/plugged')
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'jaredgorski/spacecamp'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'ayu-theme/ayu-vim' " or other package manager
 call plug#end()
 
@@ -43,15 +44,25 @@ if executable(s:clip)
     augroup END
 endif
 
-
 " Status line color
 " hi StatusLine ctermfg=1 ctermbg=114
 let g:lightline = {
       \ 'colorscheme': 'ayu',
       \ }
 
-" Telescope mapings
-nnoremap <leader>f <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" FZF Mappings
+
+nnoremap <silent> <Space><Space> :Files<CR>
+map <C-f> :Files<CR>
+map <leader>b :Buffers<CR>
+nnoremap <leader>g :Rg<CR>
+nnoremap <leader>t :Tags<CR>
+nnoremap <leader>m :Marks<CR>
+
+let g:fzf_tags_command = 'ctags -R'
+" Border color
+let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
+
+let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
+let $FZF_DEFAULT_COMMAND="rg --files --hidden"
